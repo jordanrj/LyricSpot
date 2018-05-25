@@ -1,0 +1,64 @@
+body {
+    margin: 0;  
+    height: 100%;
+}
+
+.auth-btn {
+    display: block;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 10px;
+    background: rgb(100, 100, 100);
+    border-radius: 25px;
+    font-size: 1.2em;
+    padding: 10px 20px ;
+    color: white;
+    border: 2px solid white;
+}
+
+.auth-btn:hover {
+    cursor: pointer;
+    
+}
+
+.auth-btn:focus {
+    outline: 0;
+}
+
+.whole-enchilada {
+    background: linear-gradient(rgb(94, 94, 94), rgb(10, 10, 10)),
+                -webkit-linear-gradient(rgb(94, 94, 94), rgb(10, 10, 10));
+    
+    color: rgb(240,240,240);
+    height: 98vh;
+    padding: 1vh 0;
+}
+
+.app {
+    width: 85%;
+    margin: auto;
+}
+
+.track-info {
+    text-align: center;
+    
+}
+
+a {
+    color: rgb(240,240,240);
+}
+
+.album-zone {
+    height: 73vh;
+    display: inline-block;
+    width: 48%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-size: contain;
+}
+
+.lyrics {
+    display: inline-block;
+    
+    width: 50%;
+}
