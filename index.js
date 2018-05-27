@@ -23,11 +23,28 @@ class App {
     //determines if we have auth token or not.  If not, we call the function to get it,
     // if we do have it, we call the function to get track info.
     nextStep() {
+        let state = this;
+
         this.token = this.getParameterByName("access_token", window.location.href);
         if (this.token === null) {
             this.getToken();
-        } 
-        this.getInfo();
+        }
+
+        this.getInfo()
+        .then((data) => {
+            state.track.processData(data);
+            console.log("A");
+            //return this.getLyrics(state.track.artist, state.track.name);
+        })
+        /*.then((lyricsData) => {
+            console.log("B");
+        })*/
+        .then(() => {
+            state.track.render();
+        })
+        .catch((err) => {
+            console.error("There was an Error. ", err.statusText);
+        });
         return;
     }
 
@@ -35,36 +52,45 @@ class App {
     getInfo() {
         let state = this;
         if (this.token !== null) {
-            var xhr = new XMLHttpRequest();
-        
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    state.processRes(xhr.response);
-                    state.track.render();
-                } else {
-                    console.error("Error: " + this.status);
-                }
-            }
-        
-            xhr.open("GET", "https://api.spotify.com/v1/me/player/currently-playing");
-            xhr.responseType = "json";
-            xhr.setRequestHeader("Authorization", "Bearer " + this.token);   
-            xhr.send(); 
+            return new Promise(function(resolve, reject) {
+                var xhr = new XMLHttpRequest();
+                
+                xhr.open("GET", "https://api.spotify.com/v1/me/player/currently-playing");
+                xhr.responseType = "json";
+                xhr.setRequestHeader("Authorization", "Bearer " + state.token);   
+
+                xhr.onload = function() {
+                    if (this.status === 200 && this.readyState === 4) {               
+                        resolve(xhr.response);
+                    } 
+                };
+                xhr.onerror = function() {
+                    reject({
+                        status: this.status,
+                        statusText: xhr.statusText
+                    });
+                };
+
+                xhr.send(); 
+            }); 
         }
     }
 
-    //Parse json for relevant data.  Details found at https://beta.developer.spotify.com/documentation/web-api/reference/player/get-the-users-currently-playing-track/
-    processRes(data) {
-        let track = this.track;
-        track.name = data.item.name;
-        track.album = data.item.album.name;
-        track.albumArtLg = data.item.album.images[0].url;
-        track.albumArtMd = data.item.album.images[1].url;
-        track.albumArtSm = data.item.album.images[2].url;
-        track.albumLink = data.item.album.external_urls.spotify;
-        track.artist = data.item.artists[0].name;
-        track.artistLink = data.item.artists[0].external_urls.spotify;
-        return;
+    getLyrics(artist, name) {
+        console.log("C");
+        xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://127.0.0.1:5000/");
+        xhr.send();
+        //{artist: artist, song: name}
+        //?artist=" + artist + "&song=" + name
+        console.log("D");
+        xhr.onload = function() {
+            console.log('loaded');
+        }
+
+        xhr.onerror = function() {
+            console.log("error");
+        }
     }
 }
 
@@ -83,6 +109,18 @@ class Track {
         this.lyrics = "";
     }
 
+    //Parse json for relevant data.  Details found at https://beta.developer.spotify.com/documentation/web-api/reference/player/get-the-users-currently-playing-track/
+    processData(data) {
+        this.name = data.item.name;
+        this.album = data.item.album.name;
+        this.albumArtLg = data.item.album.images[0].url;
+        this.albumArtMd = data.item.album.images[1].url;
+        this.albumArtSm = data.item.album.images[2].url;
+        this.albumLink = data.item.album.external_urls.spotify;
+        this.artist = data.item.artists[0].name;
+        this.artistLink = data.item.artists[0].external_urls.spotify;
+    }
+
     //renders track data to view
     render() {
         document.getElementById("title").innerHTML = this.name;
@@ -90,7 +128,6 @@ class Track {
         document.getElementById("artistLink").setAttribute("href", this.artistLink);
         document.getElementById("album").innerHTML = this.album;
         document.getElementById("albumLink").setAttribute("href", this.albumLink);
-        console.log(this.albumArtLg);
         document.getElementById("albumZone").style.backgroundImage = "url('" + this.albumArtLg + "')";
     }
 }
@@ -100,4 +137,7 @@ function main() {
     var app = new App();
     app.nextStep();
 }
+
+main();
+
 

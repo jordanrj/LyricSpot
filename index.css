@@ -1,6 +1,7 @@
 body {
     margin: 0;  
     height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .auth-btn {
@@ -61,4 +62,26 @@ a {
     display: inline-block;
     
     width: 50%;
+}
+
+.track-info {
+    font-weight: lighter;
+    font-style: normal;
+}
+
+.title {
+    margin-top: 0;
+}
+
+@media(max-width: 840px) {
+    .album-zone {
+        display: block;
+        width: 100%;
+        background-position: center;
+        background-blend-mode: darken;
+    }
+
+    .lyrics {
+        width: 100%;
+    }
 }
