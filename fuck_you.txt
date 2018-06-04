@@ -1,0 +1,6 @@
+1. disable text in bottom left corner on hover.
+2. get the fuckin lyrics working (idk why cheerio is such a bitc hcompared to beautifulsoup)
+3. get the next song working
+4. get the auto refresh working when song changes
+5. id like to pause things, how bout you?
+6. if its stillthis ugly at thsi point you should just quit

@@ -1,0 +1,154 @@
+body {
+    margin: 0;  
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow:hidden;
+}
+
+.lyricZone {
+    display: block;
+    height: 70vh;
+}
+
+.auth-btn {
+    display: block;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 10px;
+    background: rgb(100, 100, 100);
+    border-radius: 25px;
+    font-size: 1.2em;
+    padding: 10px 20px ;
+    color: white;
+    border: 2px solid white;
+    margin-top: 3vh;
+    position: absolute;
+    top: 75vh;
+    right: 7.5vw;
+    z-index: 2;
+}
+
+.auth-btn:hover {
+    cursor: pointer;
+    border: 2px solid rgb(22, 224, 22);
+    color:rgb(22, 224, 22); 
+    
+}
+
+.auth-btn:focus {
+    outline: 0;
+}
+
+.whole-enchilada {
+    background: linear-gradient(rgb(94, 94, 94), rgb(10, 10, 10)),
+                -webkit-linear-gradient(rgb(94, 94, 94), rgb(10, 10, 10));
+    
+    color: rgb(240,240,240);
+    height: 98vh;
+    padding: 1vh 0;
+}
+
+.app {
+    width: 85%;
+    margin: auto;
+}
+
+.track-info {
+    text-align: center;
+    
+}
+
+a {
+    color: rgb(240,240,240);
+}
+
+.album-zone {
+    height: 73vh;
+    display: inline-block;
+    width: 50%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-size: contain;
+    float: left;
+    height: 70vh;
+    width: 70vh;
+    margin-top: 5vh;
+}
+
+.lyrics {
+    
+}
+
+.track-info {
+    text-align: center;
+    display: block;
+    font-style: normal;
+    padding: 0;
+    padding-top: 80vh;     
+    
+}
+
+.lyrics-container {
+    max-height: 65vh;
+    display: inline-block;
+    min-width: 40vw;
+    width: 50vw;
+    font-size: 1.5em;
+    margin: 2.5vh auto;
+    float: right;
+    text-align: center;
+    margin-right: -10vh;
+    overflow-y: scroll;
+    line-height: 1.4em;
+    text-align: center;
+    margin-top: 7.5vh;
+    
+}
+
+.title {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    font-weight: lighter;    
+}
+
+.info {
+    text-align: center;
+    
+    margin: 0;
+}
+
+/* Lyric scrollbar theme. adapted from w3schools reference */
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey; 
+        border-radius: 10px;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: rgb(22, 224, 22); 
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #b30000; 
+    }
+
+@media(max-width: 840px) {
+    .album-zone {
+        display: block;
+        width: 100%;
+        background-position: center;
+        background-blend-mode: darken;
+    }
+
+    .lyrics {
+        width: 100%;
+    }
+}
