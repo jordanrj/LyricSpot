@@ -35,17 +35,16 @@ class App {
         .then((data) => {
             state.track.processData(data);
             return this.getLyrics();
-            //console.log(this.track.lyrics);
-            //console.log("A:  " + this.getLyrics());
         })
         .then((lyrics) => {
-            //console.log(lyr);
+            
             this.track.lyrics = lyrics;
             state.track.render();
         })
         .catch((err) => {
             console.error("There was an Error. ", err.statusText);
-            console.log(err);
+            state.track.render();
+
         });
         return;
     }
@@ -132,6 +131,7 @@ class Track {
     //renders track data to view
     render() {
         var height = 0;
+
         document.getElementById("title").innerHTML = this.name;
         document.getElementById("artist").innerHTML = this.artist;
         document.getElementById("artistLink").setAttribute("href", this.artistLink);
