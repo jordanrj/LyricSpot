@@ -7,7 +7,10 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 
+
 /* helper functions for requests */
+/* NOTE: Though some functions concerning primary and backup are very similar, the formats required for 
+   the requests are diifferent enough that I feel they warrant having their own functions */
 
     //removes punctuation and words ignored in queries
     function cleanBackupParam(param, type) {
@@ -31,12 +34,9 @@ app.use(express.static(__dirname + '/public'));
         return param;
     }
 
+
     function cleanParam(param, type) {
         if (type === 'artist') {
-
-            //only exception to including "The" in the artist name, so hardcoded
-           
-            param = param.replace("and", '');
             param = param.replace(/[-']/gi, '');
             param = param.replace(/[^\w\s] /gi, ' ');
             
@@ -44,81 +44,92 @@ app.use(express.static(__dirname + '/public'));
         }
         
         param = param.replace("Remastered", '');
-        param = param.replace(/[']/gi, '');
+        param = param.replace(/[']/gi, '-');
         param = param.replace(/[^\w\s] /gi, ' ');
         param = param.replace(/[{()}]/g, '');
 
         return param;
     }
 
+    function createURL(artist, song) {
+        let url = "https://www.musixmatch.com/lyrics/";
+    
+        artist = cleanParam(artist, 'artist');
+        song = cleanParam(song, 'song');
+        artistArr = artist.split(' ');
+        songArr = song.split(' ');
+    
+        //removes empty chars from array, then joins with '-'
+        for (let i = 0; i < artistArr.length; i++) {
+            if (artistArr[i] === '') {
+                artistArr.splice(i, 1);
+                i--;
+            }
+        }
+        url += artistArr.join('-');
+    
+        url += "/";
+    
+        //removes empty chars from array, then joins with '-'    
+        for (let i = 0; i < songArr.length; i++) {
+            if (songArr[i] == '') {
+                songArr.splice(i, 1);
+                i--;
+            }
+        }
+        url += songArr.join('-');
 
+        //checks for a hanging '-' at the end of url
+        if (url[url.length - 1] == '-') {
+            url = url.substring(0, url.length - 1);
+        }
+
+        console.log(url);
+        
+        return url;
+    }
+
+    function createBackupURL(artist, song) {
+        let url = "http://www.metrolyrics.com/";
+        
+        artist = cleanBackupParam(artist, 'artist');
+        song = cleanBackupParam(song, 'song');
+        artistArr = artist.split(' ');
+        songArr = song.split(' ');
+    
+        //joins the songArr into a string while ignoring blank chars
+        for (let i = 0; i < songArr.length; i++) {
+            if (songArr[i] !== '') {
+                 url += songArr[i] + '-';
+            }
+        }
+    
+        url += "lyrics-";
+    
+        //joins the artistArr into a string while ignoring blank chars
+        for (let i = 0; i < artistArr.length; i++) {
+            url += artistArr[i];
+            if (i !== artistArr.length - 1 && artistArr[i] != '') {
+                url += '-';
+            }
+        }
+    
+        console.log(url);
+        return url;
+    }
+
+
+
+
+
+
+
+/* Request handlers */    
 
 app.get('/', function(req, res) {
     res.render("index");
 });
 
-function createURL(artist, song) {
-    let url = "https://www.musixmatch.com/lyrics/";
-
-    artist = cleanParam(artist, 'artist');
-    song = cleanParam(song, 'song');
-    artistArr = artist.split(' ');
-    songArr = song.split(' ');
-
-    //removes empty chars from array, then joins with '-'
-    for (let i = 0; i < artistArr.length; i++) {
-        if (artistArr[i] === '') {
-            artistArr.splice(i, 1);
-            i--;
-        }
-    }
-    url += artistArr.join('-');
-
-    url += "/";
-
-    //removes empty chars from array, then joins with '-'    
-    for (let i = 0; i < songArr.length; i++) {
-        if (songArr[i] == '') {
-            songArr.splice(i, 1);
-            i--;
-        }
-    }
-    url += songArr.join('-');
-
-    console.log(url);
-
-    return url;
-}
-
-
-function createBackupURL(artist, song) {
-    let url = "http://www.metrolyrics.com/";
-    
-    artist = cleanBackupParam(artist, 'artist');
-    song = cleanBackupParam(song, 'song');
-    artistArr = artist.split(' ');
-    songArr = song.split(' ');
-
-    //joins the songArr into a string while ignoring blank chars
-    for (let i = 0; i < songArr.length; i++) {
-        if (songArr[i] !== '') {
-             url += songArr[i] + '-';
-        }
-    }
-
-    url += "lyrics-";
-
-    //joins the artistArr into a string while ignoring blank chars
-    for (let i = 0; i < artistArr.length; i++) {
-        url += artistArr[i];
-        if (i !== artistArr.length - 1 && artistArr[i] != '') {
-            url += '-';
-        }
-    }
-
-    console.log(url);
-    return url;
-}
 
 app.get('/lyrics', function(req, res) {
     let url = createURL(req.query.artist, req.query.song);
@@ -132,11 +143,11 @@ app.get('/lyrics', function(req, res) {
                 lyrics += $(this).html();
             })
 
-            if (lyrics != '' && lyrics != " ") {
-                console.log("good");
-                
+            if (lyrics != '' && lyrics != " ") {   
+                //if request successful send lyrics             
                 res.send(lyrics);
             } else {
+                //check backup source for lyrics
                 console.log("backup");
                 url = createBackupURL(req.query.artist, req.query.song);
                 request(url, function(error, result, data) {
@@ -147,9 +158,14 @@ app.get('/lyrics', function(req, res) {
                         $("p.verse").each(function() {
                             lyrics += '\n';
                             lyrics += $(this).html();
-                            lyrics += "<br /><br /><br />";
+                            lyrics += "<br /><br />";
                         })
-                        res.send(lyrics); 
+
+                        if (lyrics != '' && lyrics != ' ') {
+                            res.send(lyrics); 
+                        } else {
+                            res.send("Sorry! \n The lyrics for this song are unavailable :(");
+                        }
                     } else {
                         console.log("error");
                     }

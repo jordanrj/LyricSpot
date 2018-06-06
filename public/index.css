@@ -63,9 +63,7 @@ a {
 }
 
 .album-zone {
-    height: 73vh;
     display: inline-block;
-    width: 50%;
     background-repeat: no-repeat;
     overflow: hidden;
     background-size: contain;
@@ -97,8 +95,9 @@ a {
     margin: 2.5vh auto;
     float: right;
     text-align: center;
-    margin-right: -10vh;
+    margin-right: -5vh;
     overflow-y: scroll;
+    overflow-x: hidden;
     line-height: 1.4em;
     text-align: center;
     margin-top: 7.5vh;
@@ -114,7 +113,6 @@ a {
 
 .info {
     text-align: center;
-    
     margin: 0;
 }
 
@@ -140,15 +138,41 @@ a {
         background: #b30000; 
     }
 
-@media(max-width: 840px) {
+@media(max-width: 1200px) {
     .album-zone {
         display: block;
         width: 100%;
         background-position: center;
         background-blend-mode: darken;
+        
     }
 
     .lyrics {
-        width: 100%;
+        width: 100%;  
+        font-size: .8em;
+    }
+
+    .lyrics-container {
+        margin: 0;
+        top: 9vh;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 60vh;
+        min-height: 60vh;
+        
+        background: rgba(0,0,0,.9);
+        
+    }
+
+    .track-info {
+        padding-top: 85vh;
+    }
+
+    .auth-btn {
+        padding: 7px; 
+        top: 75vh;
+
     }
 }
