@@ -1,85 +1,113 @@
-* {
-    margin: 0;
-    padding: 0;
+
+body {
+    margin: 0;  
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow:hidden;
+}
+
+.lyricZone {
+    display: block;
+    height: 70vh;
+}
+
+.auth-btn {
+    text-align: center;
+    border-radius: 25px;
+    font-size: 1.2em;
+    padding: 10px 0 ;
+    color: white;
+    border: 2px solid white;
+    width: 10%;
+    margin: 2% 45%;
+    background: rgba(0,0,0,0);
+}
+
+
+.auth-btn:hover {
+    cursor: pointer;
+    border: 2px solid rgb(22, 224, 22);
+    text-decoration: underline; 
+    background: rgb(100, 100, 100);
+    transition: .1s;
+}
+
+.auth-btn:focus {
+    outline: 0;
+}
+
+.whole-enchilada {
+    background: linear-gradient(rgb(94, 94, 94), rgb(10, 10, 10)),
+                -webkit-linear-gradient(rgb(94, 94, 94), rgb(10, 10, 10));
+    
+    color: rgb(240,240,240);
+    height: 98vh;
+    padding: 1vh 0;
+}
+
+.app {
+    width: 85%;
+    margin: auto;
+}
+
+.track-info {
+    text-align: center;
+    margin-top: 5px;
 }
 
 a {
     color: rgb(240,240,240);
 }
 
-/*For all widths */
-@media(min-width: 0px) {
-    body {
-        margin: 0;  
-        height: 100%;
-        font-family: Arial, Helvetica, sans-serif;
-        overflow:hidden;
-        text-align: center;
-    }
-    
-    .whole-enchilada {
-        background: linear-gradient(rgb(94, 94, 94), rgb(10, 10, 10)),
-                    -webkit-linear-gradient(rgb(94, 94, 94), rgb(10, 10, 10));
-        
-        color: rgb(240,240,240);
-    }
-    
-    .app {
-    
-        height: 100vh;
-    }
-    
-    .lyric-zone {
-        width: 96%;
-        padding: 1%;
-        margin: auto;
-    }
-    
-    .album-zone {
-        background-size: cover;
-        background-repeat: no-repeat;
-        min-height: 70vh;   
-    }
-    
-    .lyrics-container {
-        width: 94%;
-        line-height: 1.5em;
-        max-height: 67vh;
-        font-size: 1.2em;
-        overflow-y: scroll;
-        margin-bottom: 5%;
-        position: absolute;
-        left:0;
-        right: 0;
-        margin: auto;
-        top: 2vh;
-        background: rgba(0,0,0,.8);
-    }
-    
-    .lyrics {
-        white-space: pre-wrap;
-    }
-    
-    .auth-btn {
-        margin-top: 3%;
-        background: rgb(0,0,0,0);
-        color: rgb(240,240,240);
-        border: 2px solid white;
-        border-radius: 25px;
-        padding: 10px 25px;
-    }
+.album-zone {
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-size: contain;
+    float: left;
+    height: 70vh;
+    width: 70vh;
+    margin-top: 5vh;
+}
 
-    .auth-btn:hover {
-        cursor: pointer;
-        border: 2px solid rgb(22, 224, 22);
-        text-decoration: underline;
-    }
+.lyrics {
+    white-space: pre-wrap;
+}
 
-    .auth-btn:focus {
-        outline: 0;
-    }
+.track-info {
+    text-align: center;
+    font-style: normal;
+    padding: 0;  
+}
 
-    /* Lyric scrollbar theme. adapted from w3schools reference */
+.lyrics-container {
+    max-height: 65vh;
+    min-width: 40vw;
+    width: 48vw;
+    font-size: 1.5em;
+    margin: 2.5vh auto;
+    float: right;
+    text-align: center;
+    margin-right: -5vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    line-height: 1.4em;
+    text-align: center;
+    margin-top: 7vh;   
+}
+
+.title {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    font-weight: lighter;    
+}
+
+.info {
+    text-align: center;
+    margin: 0;
+}
+
+/* Lyric scrollbar theme. adapted from w3schools reference */
     ::-webkit-scrollbar {
         width: 5px;
     }
@@ -99,62 +127,65 @@ a {
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
         background: #b30000; 
-    }
-}
+    }  
 
-@media(min-width: 599px) {    
+@media(max-width: 1400px) {
     .lyrics-container {
-        width: 90%;
-        top: 4%;
-        max-height: 64%;
+        width: 44vw;
+        height: 67vh;
     }
 
-    .auth-btn {
-        margin: 3% auto;
-        background: rgb(0,0,0,0);
-        color: rgb(240,240,240);
-        border: 2px solid white;
-        border-radius: 35px;
-        padding: 15px 35px;
-        font-size: 1.3em;
-    }
+
 }
 
-@media(min-width: 700px) {
-    .lyrics-container {
-        font-size: 1.5em;
-    }
-}
-
-@media(min-width: 1200px) {
-    
-
-    .lyric-zone {
-        padding: 0;
-        margin: auto;
-        width: 90%;
-        display: block;
-    }
-
+@media(max-width: 1200px) {
     .album-zone {
-        margin-top: 4vh;
-        width: 35vw;
-        height: 35vw;
-        float: left;
+        display: block;
+        width: 100%;
+        background-position: center;
+        background-blend-mode: darken;
         
     }
 
-    .lyrics-container {
-        position: static;
-        background: none;
-        width: 55%;
-        height: 35vw;
-        margin-top: 4vh;
-        float: right;
+    .lyrics {
+        width: 100%;  
+        font-size: .8em;
+    }
 
+    .lyrics-container {
+        top: 9vh;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 60vh;
+        height: 64vh;
+        background: rgba(0,0,0,.9);
+        margin-bottom: 2%;
+        border: 1px solid rgb(22, 224, 22);
     }
 
     .auth-btn {
-        margin: 1.5%;
+        padding: 7px; 
+        width: 16%;
+        margin-left: 42%; 
+    }
+}
+
+@media (max-width: 750px) {
+    .auth-btn {
+        width: 24%;
+        margin-left: 38%;
+    }
+}
+
+@media (max-width: 490px) {
+    .auth-btn {
+        width: 36%;
+        margin-left: 32%;
+    }
+
+    .lyrics-container {
+        width: 100%;
     }
 }
