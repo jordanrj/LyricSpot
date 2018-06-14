@@ -182,10 +182,25 @@ a {
 @media (max-width: 490px) {
     .auth-btn {
         width: 36%;
+        margin-top: -25px;
         margin-left: 32%;
     }
 
     .lyrics-container {
         width: 100%;
+        margin: 0;
+        top:0;
+    }
+
+    .lyrics-zone {
+        margin: 0;
+    }
+
+    .album-zone {
+        margin: 0;
+    }
+
+    .track-info {
+        font-size: .8em;
     }
 }
