@@ -140,11 +140,7 @@ class Track {
         document.getElementById("albumLink").setAttribute("href", this.albumLink);
         document.getElementById("albumZone").style.backgroundImage = "url('" + this.albumArtLg + "')";
         document.getElementById("lyrics").innerHTML = this.lyrics;
-        /* attempt at scrolling with ssong completion percentage
-        setInterval(function() {
-            document.getElementById("lyrics").scrollTop(height);
-            height++;
-        }, 100);*/
+        
     }
 }
 

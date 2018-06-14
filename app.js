@@ -83,8 +83,6 @@ app.use(express.static(__dirname + '/public'));
         if (url[url.length - 1] == '-') {
             url = url.substring(0, url.length - 1);
         }
-
-        console.log(url);
         
         return url;
     }
@@ -114,7 +112,6 @@ app.use(express.static(__dirname + '/public'));
             }
         }
     
-        console.log(url);
         return url;
     }
 
@@ -125,7 +122,6 @@ app.use(express.static(__dirname + '/public'));
 
 
 /* Request handlers */    
-
 app.get('/', function(req, res) {
     res.render("index");
 });
@@ -148,7 +144,6 @@ app.get('/lyrics', function(req, res) {
                 res.send(lyrics);
             } else {
                 //check backup source for lyrics
-                console.log("backup");
                 url = createBackupURL(req.query.artist, req.query.song);
                 request(url, function(error, result, data) {
                     if (!error) {
