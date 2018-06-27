@@ -3,7 +3,21 @@ body {
     margin: 0;  
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
-    overflow:hidden;
+    overflow: hidden;
+}
+
+/* Styling for User Alerts */
+    .alert-area {
+        width: 60%;
+        margin: 10% auto;
+        border: 2px solid white;
+        padding: 25px;
+        border-radius: 15px;
+    }
+/* End styling for user alerts */    
+
+.hidden {
+    display: none;
 }
 
 .lyricZone {

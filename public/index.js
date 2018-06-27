@@ -1,4 +1,3 @@
-//test 2
 
 // Handles interaction between app and api, as well as all data processing.
 class App {
@@ -9,7 +8,7 @@ class App {
 
     //redirects to spotify user auth form
     getToken() {
-        window.location = "https://accounts.spotify.com/authorize?client_id=1e456c18bc9d472b9a8e7a76fb2e0965&redirect_uri=http://lyricspot.us&scope=user-read-private%20user-read-currently-playing%20user-read-playback-state%20user-read-email&response_type=token";
+        window.location = "https://accounts.spotify.com/authorize?client_id=1e456c18bc9d472b9a8e7a76fb2e0965&redirect_uri=http://localhost:8888/&scope=user-read-private%20user-read-currently-playing%20user-read-playback-state%20user-read-email&response_type=token";
         
     }
 
@@ -56,17 +55,22 @@ class App {
         let state = this;
         if (this.token !== null) {
             return new Promise(function(resolve, reject) {
-                var xhr = new XMLHttpRequest();
+                let xhr = new XMLHttpRequest();
                 
                 xhr.open("GET", "https://api.spotify.com/v1/me/player/currently-playing");
                 xhr.responseType = "json";
                 xhr.setRequestHeader("Authorization", "Bearer " + state.token);   
-
                 xhr.onload = function() {
                     if (this.status === 200 && this.readyState === 4) {               
                         resolve(xhr.response);
-                    } 
+                    } else if (this.status === 204) {
+                        //if no data received, issue alert to user
+                        let alertArea = document.getElementById("alertArea");
+                        alertArea.classList.remove("hidden");
+                        alertArea.innerHTML = "<h1>Oops!<br /><br />  To use LyricSpot you have to be playing a song through Spotify!</h1>"
+                    }
                 };
+
                 xhr.onerror = function() {
                     reject({
                         status: this.status,
@@ -83,7 +87,7 @@ class App {
     getLyrics() {
         let state = this;
         return new Promise(function(resolve, reject) {
-            var xhr = new XMLHttpRequest();
+            let xhr = new XMLHttpRequest();
             xhr.open("GET", "/lyrics?artist=" + state.track.artist + "&song=" + state.track.name);
 
             xhr.onload = function() {
@@ -132,8 +136,14 @@ class Track {
 
     //renders track data to view
     render() {
-        var height = 0;
+        let height = 0;
 
+        //reveal hidden elements
+        document.getElementById("lyricZone").classList.remove("hidden");
+        document.getElementById("controls").classList.remove("hidden");
+        document.getElementById("trackInfo").classList.remove("hidden");
+
+        //render app with data
         document.getElementById("title").innerHTML = this.name;
         document.getElementById("artist").innerHTML = this.artist;
         document.getElementById("artistLink").setAttribute("href", this.artistLink);

@@ -11,17 +11,25 @@
     <div id="wholeEnchilada" class="whole-enchilada">
         <div id="app" class="app">
 
+            <div id="alertArea" class="alert-area hidden">
+            </div>
             
-            <div id="lyricZone" class="lyric-zone">
+
+            <div id="lyricZone" class="lyric-zone hidden">
                 <div id="albumZone" class="album-zone"></div>
                 <div id="lyricsContainer" class="lyrics-container">
                     <div id="lyrics" class="lyrics">
                     </div>
                 </div>
             </div>
-            <button id="auth_btn" class="auth-btn" onclick="main()">Refresh</button>
+
+
+            <div id="controls" class="controls hidden">
+                <button id="auth_btn" class="auth-btn" onclick="main()">Refresh</button>
+            </div>
             
-            <div id="trackInfo" class="track-info">
+
+            <div id="trackInfo" class="track-info hidden">
                 <h1 id="title" class="title"></h1>
                 <h2 id="info" class="info">
                     <a id="artistLink" href=""><span id="artist"></span></a>  -  <a id="albumLink" href=""><span id="album"></span></a>
