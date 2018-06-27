@@ -8,8 +8,8 @@ class App {
 
     //redirects to spotify user auth form
     getToken() {
-        window.location = "https://accounts.spotify.com/authorize?client_id=1e456c18bc9d472b9a8e7a76fb2e0965&redirect_uri=http://localhost:8888/&scope=user-read-private%20user-read-currently-playing%20user-read-playback-state%20user-read-email&response_type=token";
-        
+        window.location = "https://accounts.spotify.com/authorize?client_id=1e456c18bc9d472b9a8e7a76fb2e0965&redirect_uri=http://lyricspot.us&scope=user-read-private%20user-read-currently-playing%20user-read-playback-state%20user-read-email&response_type=token";
+        //for testing: http://localhost:8888/
     }
 
     //gets access token from query returned by the spotify auth page.  Adapted from stack overflow.
@@ -37,16 +37,15 @@ class App {
             state.track.processData(data);
             return this.getLyrics();
         })
-        .then((lyrics) => {
-            
+        .then((lyrics) => {          
             this.track.lyrics = lyrics;
             state.track.render();
         })
         .catch((err) => {
             console.error("There was an Error. ", err.statusText);
             state.track.render();
-
         });
+
         return;
     }
 

@@ -173,6 +173,6 @@ app.get('/lyrics', function(req, res) {
 })
 
 
-app.listen(8888, function() {
+app.listen(80, function() {
     console.log("server up");
 })
