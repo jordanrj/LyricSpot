@@ -10,6 +10,7 @@ class App {
     getToken() {
         window.location = "https://accounts.spotify.com/authorize?client_id=1e456c18bc9d472b9a8e7a76fb2e0965&redirect_uri=http://lyricspot.us&scope=user-read-private%20user-read-currently-playing%20user-read-playback-state%20user-read-email&response_type=token";
         //for testing: http://localhost:8888/
+        //for deployment http://lyricspot.us
     }
 
     //gets access token from query returned by the spotify auth page.  Adapted from stack overflow.
