@@ -94,9 +94,9 @@ a {
 }
 
 .lyrics-container {
-    max-height: 65vh;
+    max-height: 68vh;
     min-width: 40vw;
-    width: 48vw;
+    width: 44vw;
     font-size: 1.5em;
     margin: 2.5vh auto;
     float: right;
@@ -106,7 +106,7 @@ a {
     overflow-x: hidden;
     line-height: 1.4em;
     text-align: center;
-    margin-top: 7vh;   
+    margin-top: 6vh;  
 }
 
 .title {
