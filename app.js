@@ -175,4 +175,5 @@ app.get('/lyrics', function(req, res) {
 
 app.listen(8888, function() {
     console.log("server up");
+    //port 80 for deployment
 })
