@@ -81,6 +81,7 @@ a {
     height: 70vh;
     width: 70vh;
     margin-top: 5vh;
+    margin-left: -4vh;
 }
 
 .lyrics {
@@ -146,13 +147,26 @@ a {
 @media(max-width: 1400px) {
     .lyrics-container {
         width: 44vw;
-        height: 67vh;
+        height: 68vh;
+        margin-right: 0;
+    }
+
+    .app {
+        width: 97%;
+    }
+
+    .album-zone {
+        margin-left: 0;
     }
 
 
 }
 
 @media(max-width: 1200px) {
+    .app {
+        width: 85%;
+    }
+
     .album-zone {
         display: block;
         width: 100%;
