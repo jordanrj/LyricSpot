@@ -28,7 +28,7 @@ body {
 .auth-btn {
     text-align: center;
     border-radius: 25px;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     padding: 10px 0 ;
     color: white;
     border: 2px solid white;
@@ -97,7 +97,7 @@ a {
     max-height: 68vh;
     min-width: 40vw;
     width: 44vw;
-    font-size: 1.5em;
+    font-size: 1.5rem;
     margin: 2.5vh auto;
     float: right;
     text-align: center;
@@ -163,7 +163,8 @@ a {
 
     .lyrics {
         width: 100%;  
-        font-size: .8em;
+        font-size: 1.15rem;
+        line-height: 1.4em;
     }
 
     .lyrics-container {
@@ -215,6 +216,6 @@ a {
     }
 
     .track-info {
-        font-size: .8em;
+        font-size: .8rem;
     }
 }
