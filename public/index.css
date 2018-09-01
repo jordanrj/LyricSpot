@@ -147,9 +147,11 @@ a {
 @media(max-width: 1400px) {
     .lyrics-container {
         width: 44vw;
-        height: 68vh;
+        max-height: 73vh;
         margin-right: 0;
-    }
+        padding: 0 5px;
+        margin-top: 3vh;
+    } 
 
     .app {
         width: 97%;
@@ -157,12 +159,14 @@ a {
 
     .album-zone {
         margin-left: 0;
+        width: 68vh;
+        height: 68vh;
     }
 
 
 }
 
-@media(max-width: 1200px) {
+@media(max-width: 1255px) {
     .app {
         width: 85%;
     }
@@ -171,15 +175,15 @@ a {
         display: block;
         width: 100%;
         background-position: center;
-        background-blend-mode: darken;
-        
+        background-blend-mode: darken; 
     }
 
     .lyrics {
         width: 95%;  
         margin: auto;
-        font-size: 1.15rem;
+        font-size: 1.5rem;
         line-height: 1.4em;
+        
     }
 
     .lyrics-container {
@@ -206,31 +210,34 @@ a {
         width: 24%;
         margin-left: 38%;
     }
+    
+    .lyrics {
+        font-size: 1.4rem;
+    }
 }
 
-@media (max-width: 490px) {
-    html {
-        border: 1px solid orange;
-    }
-    body {
-        border: 1px solid rgb(8, 230, 8);
-    }
+@media (max-width: 590px) {
+    
+
     .auth-btn {
         width: 36%;
-        margin-top: -25px;
-        margin-left: 32%;
+        margin: 5vh 0 3vh 32%;
     }
 
     .lyrics-container {
         width: 95%;
-        margin: auto;
         top: 10px;
         padding-bottom: 2px;
-        overflow: hidden;
+
     }
 
     .lyrics-zone {
         margin: 0;
+    }
+
+    .lyrics {
+        font-size: 1.2rem;
+        padding-top: 10px;
     }
 
     .album-zone {
@@ -241,7 +248,5 @@ a {
         font-size: .8rem;
     }
 
-    .whole-enchilada {
-        border: 1px solid red;
-    }
+
 }
