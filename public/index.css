@@ -176,7 +176,8 @@ a {
     }
 
     .lyrics {
-        width: 100%;  
+        width: 95%;  
+        margin: auto;
         font-size: 1.15rem;
         line-height: 1.4em;
     }
@@ -191,7 +192,6 @@ a {
         height: 64vh;
         background: rgba(0,0,0,.9);
         margin-bottom: 2%;
-        border: 1px solid rgb(22, 224, 22);
     }
 
     .auth-btn {
@@ -209,6 +209,12 @@ a {
 }
 
 @media (max-width: 490px) {
+    html {
+        border: 1px solid orange;
+    }
+    body {
+        border: 1px solid rgb(8, 230, 8);
+    }
     .auth-btn {
         width: 36%;
         margin-top: -25px;
@@ -216,9 +222,11 @@ a {
     }
 
     .lyrics-container {
-        width: 100%;
-        margin: 0;
-        top:0;
+        width: 95%;
+        margin: auto;
+        top: 10px;
+        padding-bottom: 2px;
+        overflow: hidden;
     }
 
     .lyrics-zone {
@@ -231,5 +239,9 @@ a {
 
     .track-info {
         font-size: .8rem;
+    }
+
+    .whole-enchilada {
+        border: 1px solid red;
     }
 }

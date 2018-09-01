@@ -32,6 +32,7 @@ class App {
         if (this.token === null) {
             this.getToken();
         }
+        console.log(this.token);
 
         this.getInfo()
         .then((data) => {
